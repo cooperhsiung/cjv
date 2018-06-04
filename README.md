@@ -1,9 +1,14 @@
-cjv
-===================
+# cjv
 
-a simple json validator
+a simpler json validator
 
-compared with ajv,when I first to use `ajv`,I find it's complex,and little examples for a newcomer.
+compared with `ajv`,when I first to use `ajv`,I find it's complex,and little examples for a newcomer.
+
+## install
+
+```bash
+npm i cjv -S
+```
 
 ## example
 
@@ -47,10 +52,4 @@ let r = cjv(schema, data);
 console.time('cjv');
 console.log(r);
 console.timeEnd('cjv');
-```
-
-## install
-
-```bash
-npm i cjv -S
 ```
