@@ -26,7 +26,6 @@ function cjv(schema, data) {
         if (typeof schema[k]['validate'] !== 'function') {
           throw new Error('validate should be a function');
         }
-
         if (!schema[k]['validate'](data[k])) {
           throw new Error('type error of `' + path + '`');
         }
