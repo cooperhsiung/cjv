@@ -1,0 +1,24 @@
+{
+  "name": "cjv",
+  "version": "1.0.1",
+  "description": "a simple json validator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cooperhsiung/cjv.git"
+  },
+  "keywords": [
+    "json",
+    "schema",
+    "validate"
+  ],
+  "author": "Cooper Xiong",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cooperhsiung/cjv/issues"
+  },
+  "homepage": "https://github.com/cooperhsiung/cjv#readme"
+}
