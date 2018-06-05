@@ -4,7 +4,7 @@
 
 a simpler json validator
 
-compared with `ajv`,when I first to use `ajv`,I find it's complex,and little examples for a newcomer.
+compared with `ajv`, when I first to use `ajv`, I find that it's complex, and few examples for a newcomer.
 
 ## Install
 
@@ -40,10 +40,11 @@ const data = {
     }
   ]
 };
+
 const schema = {
   firstName: { type: 'string' },
   lastName: { type: 'string' },
-  age: { type: 'number' },
+  age: { type: 'number', validate: v => 0 < v && v < 120 },
   address: {
     type: {
       streetAddress: { type: 'string' },
@@ -61,16 +62,16 @@ const schema = {
 };
 
 const cjv = require('./');
-let result;
+
 try {
-  result = cjv(schema, data);
+  let result = cjv(schema, data);
+  console.time('cjv');
+  console.log(result);
+  console.timeEnd('cjv');
 } catch (e) {
   console.error(e);
 }
 
-console.time('cjv');
-console.log(result);
-console.timeEnd('cjv');
 ```
 
 

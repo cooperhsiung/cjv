@@ -48,13 +48,12 @@ const schema = {
 };
 
 const cjv = require('./');
-let result;
+
 try {
-  result = cjv(schema, data);
+  let result = cjv(schema, data);
+  console.time('cjv');
+  console.log(result);
+  console.timeEnd('cjv');
 } catch (e) {
   console.error(e);
 }
-
-console.time('cjv');
-console.log(result);
-console.timeEnd('cjv');
