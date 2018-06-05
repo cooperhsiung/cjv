@@ -1,55 +1,84 @@
 # cjv
 
+[![NPM Version][npm-image]][npm-url]
+
 a simpler json validator
 
 compared with `ajv`,when I first to use `ajv`,I find it's complex,and little examples for a newcomer.
 
-## install
+## Install
 
 ```bash
 npm i cjv -S
 ```
 
-## example
+## Usage
 
 ```javascript
-let data = {
-  name: 'app',
-  path: '/app',
-  targets: [
+const data = {
+  firstName: 'John',
+  lastName: 'Smith',
+  age: 27,
+  address: {
+    streetAddress: '21 2nd Street',
+    city: 'New York',
+    state: 'NY',
+    postalCode: '10021-3100'
+  },
+  phoneNumbers: [
     {
-      url: 'https://localhost:3002',
-      weight: 1,
-      status: 1
+      type: 'home',
+      number: '212 555-1234'
     },
     {
-      url: 'http://localhost:3002',
-      weight: 1,
-      status: 1
-    }
-  ],
-  consumers: { apikey: '11111', status: 1 },
-  order: 2
-};
-
-let schema = {
-  name: { type: 'string', required: true, validate: v => v.length > 1 },
-  path: { type: 'string', required: true, validate: v => true },
-  consumers: { type: { apikey: { type: 'string' }, status: { type: 'number' } } },
-  targets: [
+      type: 'office',
+      number: '646 555-4567'
+    },
     {
-      url: { type: 'string' },
-      weight: { type: 'number' },
-      status: { type: 'number' }
+      type: 'mobile',
+      number: '123 456-7890'
+    }
+  ]
+};
+const schema = {
+  firstName: { type: 'string' },
+  lastName: { type: 'string' },
+  age: { type: 'number' },
+  address: {
+    type: {
+      streetAddress: { type: 'string' },
+      city: { type: 'string' },
+      state: { type: 'string' },
+      postalCode: { type: 'string', validate: v => /\d{5}-\d{4}/.test(v) }
+    }
+  },
+  phoneNumbers: [
+    {
+      type: { type: 'string' },
+      number: { type: 'string' }
     }
   ]
 };
 
-const cjv = require('cjv');
-
-let r = cjv(schema, data);
+const cjv = require('./');
+let result;
+try {
+  result = cjv(schema, data);
+} catch (e) {
+  console.error(e);
+}
 
 console.time('cjv');
-console.log(r);
+console.log(result);
 console.timeEnd('cjv');
 ```
+
+
+## Test
+
+```bash
+npm test
+```
+
+[npm-image]: https://img.shields.io/npm/v/cjv.svg
+[npm-url]: https://www.npmjs.com/package/cjv
